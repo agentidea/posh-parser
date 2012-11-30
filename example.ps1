@@ -1,5 +1,9 @@
 start {
+
+   #create a new tree
    newTree "Consumer Products" {
+
+      #add Nodes
       addNode "household" "newProductExtension.xls" {
    		addNode "cleaners" "newProductExtension.xls"
    	}
@@ -11,13 +15,20 @@ start {
    	}
    }
 
-   #newTree <<tree name>>
-   #addNode <<node name>> <<template name>>
+   
 
-   #idea above, works for hierarchies, not sure how to handle the DAG tho?
-   #we have the share node idea
-   shareNode "shed" "household"    #target, destination
+   #DAG created by  share node command
+   shareNode "shed" "household"   
 
-   #tag tree
-   addTags "cleaners" ['non-toxic','fragrant','blue']   #node name, list tags
+   #tag a node
+   addTags "cleaners" ['non-toxic','fragrant','blue']   
 }
+
+#--------------
+#documentation 
+#--------------
+
+#newTree <<tree name>>
+#addNode <<node name>> <<template name>>
+#shareNode <<target node name>> <<node name>>
+#addTags <<node name>> <<[list of tags]>>
