@@ -1,0 +1,40 @@
+#CALLS TO build a basic tree
+# flexes our http /JSON API
+
+# note all calls must pass username_password
+# all calls must pass a credential on the url
+# kreds=YWRtaW5fOGMzMTlmMjhkODFkMTUyN2E5NDI4ZTlhNWMyMTk1ZjU%3D
+
+# 3 basic calls
+# NewTree <<name>>  							[name is treeID]
+#    returns root node id
+
+# NewNode <<name>> <<template>> <<parent>>
+#	 returns new node id
+
+# Tree2Dag2 <<treeID>> 
+#	 returns graphJSON ( d3 ready )
+
+
+#example ...
+#call to add root node
+http://astro-dev.smartorg.com/rest?command=NewTree&name=babu&kreds=YWRtaW5fOGMzMTlmMjhkODFkMTUyN2E5NDI4ZTlhNWMyMTk1ZjU%3D
+
+# success reply of new tree call, node id is passed ...
+{"commands":[{"name":"SetKontext","paramCount":"1","parameters":[{"name":"node_id","value":"36816171d61ae29e2a8aef9b79550ae5"}]},{"name":"SetKontext","paramCount":"1","parameters":[{"name":"message","value":"success"}]}],"context":{}}
+
+
+#need to get last node_id to chain calls ...
+
+#new node calls
+#add node newNodeName
+http://astro-dev.smartorg.com/rest?command=NewNode&name=newNodeName&template=helloWorld&parent=36816171d61ae29e2a8aef9b79550ae5&kreds=YWRtaW5fOGMzMTlmMjhkODFkMTUyN2E5NDI4ZTlhNWMyMTk1ZjU%3D
+
+#add node newNodeName3a
+http://astro-dev.smartorg.com/rest?command=NewNode&name=newNodeName3a&template=helloWorld&parent=36816171d61ae29e2a8aef9b79550ae5&kreds=YWRtaW5fOGMzMTlmMjhkODFkMTUyN2E5NDI4ZTlhNWMyMTk1ZjU%3D
+
+#success reply of new node call, node id is passed ...
+{"commands":[{"name":"SetKontext","paramCount":"1","parameters":[{"name":"node_id","value":"b5bc5c3cf417e74fd8983bd2c2011e92"}]},{"name":"SetKontext","paramCount":"1","parameters":[{"name":"message","value":"new node 'newNodeName3a' created and appended to parent 'babu'"}]}],"context":{}}
+
+#confirm new tree as DAG structure ...
+http://astro-dev.smartorg.com/rest?command=Tree2Dag2&treeID=babu&kreds=YWRtaW5fOGMzMTlmMjhkODFkMTUyN2E5NDI4ZTlhNWMyMTk1ZjU%3D
