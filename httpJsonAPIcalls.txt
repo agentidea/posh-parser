@@ -9,7 +9,7 @@
 # NewTree <<name>>  							[name is treeID]
 #    returns root node id
 
-# NewNode <<name>> <<template>> <<parent>>
+# NewNode <<name>> <<template>> <<parent>> <<seedNodeID>>
 #	 returns new node id
 
 # Tree2Dag2 <<treeID>> 
