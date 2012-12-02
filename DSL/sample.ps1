@@ -1,10 +1,11 @@
-. .\TreeDSL.ps1
+
+Import-Module .\TreeDSL.psm1
 
 Init {
     newTree "Tree Name" {
-        addNode "test"  "testTemplate.xls" { addNode "testA" }
-        addNode "test2" "testTemplate.xls"
-	    addNode "test3" "testTemplate.xls" { addNode "test3A"}
+        addNode "test"  "testTemplateTest.xls" { addNode "testA" }
+        addNode "test2" "testTemplateTest2.xls"
+	    addNode "test3" "testTemplateTest3.xls" { addNode "test3A"}
     }
 
     #idea above, works for hierarchies, not sure how to handle the DAG tho?
