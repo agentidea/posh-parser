@@ -1,4 +1,4 @@
-. .\TreeDSL.ps1
+Import-Module .\TreeDSL.psm1 -Force
 
 function ql {$args}
 
