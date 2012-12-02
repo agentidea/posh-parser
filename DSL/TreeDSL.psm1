@@ -53,8 +53,6 @@ function addNode {
         $Script:nodeList += $newNode
     }
 
-    #$Script:nodeList += $newNode
-
     $stack.Push($NodeName) | Out-Null
 
     if($AddNodeScriptBlock) {
@@ -90,18 +88,14 @@ function New-Node {
     )
 
     $newNode = [PSCustomObject] @{
-        NodeName   = ""
+        NodeName   = $NodeName
         Children   = @()
         Parent     = @()
-        TreeName   = ""
+        TreeName   = $TreeName
         SharedNode = @()
-        Template   = ""
+        Template   = $Template
         Tags       = @()
     }
-    
-    $newNode.NodeName = $NodeName
-    $newNode.TreeName = $TreeName
-    $newNode.Template = $Template
 
     if($Children)   { $newNode.Children   += $Children}
     if($Parent)     { $newNode.Parent     += $Parent}
