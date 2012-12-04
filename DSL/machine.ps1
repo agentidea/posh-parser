@@ -116,7 +116,7 @@ Function Test-TreeState ($treeName) {
 
 Function Other-Calls {
 
-    Test-TreeState "charity"
+
     Test-TreeState "hope"
     Test-TreeState "babu"
     Set-TreeState "babu" "accepting_new_nodes"
@@ -133,4 +133,7 @@ Function Other-Calls {
 }
 
 
- Confirm-Tree "babu"
+
+Other-Calls
+
+ #Confirm-Tree "babu"
