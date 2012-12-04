@@ -52,12 +52,8 @@ Function Add-TreeNode ($treeID,$nodeName,$children,$parent,$template,$tags) {
 Function Call-TreeEndpoint ($url){
     $kreds = Get-Kreds
     $url = $url + "&kreds=" + $kreds
-
-    Write-Host -BackgroundColor Gray -ForegroundColor DarkBlue " calling ...  ENDPOINT:: $url "
-
-
+    #Write-Host -BackgroundColor Gray -ForegroundColor DarkBlue " calling ...  ENDPOINT:: $url "
     return Invoke-RestMethod $url
-        
 }
 
 
@@ -74,7 +70,7 @@ Function Confirm-Tree ($treeID){
         $_.parameters | % {
             Write-Host $_.name + " " + $_.value
         }
-        }
+     }
 }
 
 Function Set-TreeState ($treeID,$stateName){
@@ -103,20 +99,14 @@ Function Test-TreeState ($treeName) {
 
     $state = Get-TreeState $treeName
     $state.commands | % {
-
-
         Write-Host $_.name
         $_.parameters | % {
-
             Write-Host -BackgroundColor DarkGreen $_.name + " " + $_.value
         }
-
     }
 }
 
-Function Other-Calls {
-
-
+Function Test-Calls {
     Test-TreeState "hope"
     Test-TreeState "babu"
     Set-TreeState "babu" "accepting_new_nodes"
@@ -134,6 +124,6 @@ Function Other-Calls {
 
 
 
-Other-Calls
+Test-Calls
 
  #Confirm-Tree "babu"
