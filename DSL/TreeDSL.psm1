@@ -30,8 +30,11 @@ function addNode {
     )
 
     $Parent = $stack.Peek()
+
+    $nodeGUID = [guid]::NewGuid()
     $newNode = New-Node `
         -NodeName   $NodeName `
+        -NodeID $nodeGUID `
         -Children   $Children `
         -Parent     $Parent `
         -TreeName   $TreeName `
@@ -79,6 +82,7 @@ function addTags {
 function New-Node {
     param(
         $NodeName,
+        $NodeID,
         $Children,
         $Parent,
         $TreeName,
@@ -89,6 +93,7 @@ function New-Node {
 
     $newNode = [PSCustomObject] @{
         NodeName   = $NodeName
+        NodeID = $NodeID
         Children   = @()
         Parent     = @()
         TreeName   = $TreeName
